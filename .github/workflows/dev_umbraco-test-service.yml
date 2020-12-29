@@ -13,7 +13,7 @@ jobs:
     runs-on: 'windows-latest'
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v8/8.10
 
     - name: Setup MSBuild path
       uses: microsoft/setup-msbuild@v1.0.0
