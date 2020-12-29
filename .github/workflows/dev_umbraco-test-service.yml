@@ -31,7 +31,7 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true' 
 
     - name: Publish to folder
-      run: msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=./published/ /p:PackageAsSingleFile=false .\src\umbraco.sln
+      run: msbuild .\src\umbraco.sln /p:Configuration=Release /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(build.artifactStagingDirectory)/published/" /p:PackageAsSingleFile=false /p:DeleteExistingFiles=True
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
@@ -41,4 +41,4 @@ jobs:
         app-name: 'umbraco-test-service'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_81bf02a7643243a8873f25c46c0fe8fc }}
-        package: ./published/
+        package: "$(build.artifactStagingDirectory)/published/"
