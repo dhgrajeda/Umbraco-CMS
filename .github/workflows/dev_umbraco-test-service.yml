@@ -13,7 +13,9 @@ jobs:
     runs-on: 'windows-latest'
 
     steps:
-    - uses: actions/checkout@release-8.10.0
+    - uses: actions/checkout@v2
+      with:
+        ref: release-8.10.0
 
     - name: Setup MSBuild path
       uses: microsoft/setup-msbuild@v1.0.0
