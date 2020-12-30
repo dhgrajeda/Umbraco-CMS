@@ -28,12 +28,12 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Restore NuGet packages
-      run: nuget restore .\src\umbraco.sln
+      run: nuget restore **\*.sln
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true' 
 
     - name: Publish to folder
-      run: msbuild .\src\umbraco.sln /p:Configuration=Release /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/published/' /p:PackageAsSingleFile=false /p:DeleteExistingFiles=True
+      run: msbuild **\*.sln /p:Configuration=Release /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/published/' /p:PackageAsSingleFile=false /p:DeleteExistingFiles=false
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
